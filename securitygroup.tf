@@ -1,8 +1,8 @@
 # Creates a security group that allows us to create 
 # ingress rules allowing traffic for HTTP, HTTPS and SSH protocols from anywhere
-resource "aws_security_group" "ec2_sg" {
+resource "aws_security_group" "azmi1-tf-sg-allow-ssh-http-https" {
   name   = var.sg_name
-  vpc_id = aws_vpc.azmi1-vpc.id # var.vpc_id
+  vpc_id = aws_vpc.azmi1-tf-vpc.id # var.vpc_id
 
   ingress {
     from_port   = 22
@@ -31,6 +31,10 @@ resource "aws_security_group" "ec2_sg" {
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "azmi1-tf-sg-allow-ssh-http-https"
   }
 }
 

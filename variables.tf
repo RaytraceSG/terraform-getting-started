@@ -7,7 +7,7 @@ variable "ami_id" {
 variable "ec2_name" {
   description = "Name of EC2"
   type        = string
-  default     = "my-sample-ec2-azmi1-from-tf" # Change accordingly
+  default     = "azmi1-tf-ec2" # Change accordingly
 }
 
 variable "instance_type" {

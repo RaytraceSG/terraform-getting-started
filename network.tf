@@ -1,62 +1,62 @@
 # Creates a vpc
 
-resource "aws_vpc" "azmi1-vpc" {
+resource "aws_vpc" "azmi1-tf-vpc" {
   cidr_block       = "10.0.0.0/16"
   instance_tenancy = "default"
 
   tags = {
-    Name = "azmi1-vpc"
+    Name = "azmi1-tf-vpc"
   }
 }
 
 # Create 2 public and 2 private subnets
 
-resource "aws_subnet" "azmi1-subnet-public1-us-east-1a" {
-  vpc_id     = aws_vpc.azmi1-vpc.id
+resource "aws_subnet" "azmi1-tf-public-subnet-az1" {
+  vpc_id     = aws_vpc.azmi1-tf-vpc.id
   cidr_block = "10.0.0.0/20"
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "azmi1-subnet-public1-us-east-1a"
+    Name = "azmi1-tf-public-subnet-az1"
   }
 }
 
-resource "aws_subnet" "azmi1-subnet-public2-us-east-1b" {
-  vpc_id     = aws_vpc.azmi1-vpc.id
+resource "aws_subnet" "azmi1-tf-public-subnet-az2" {
+  vpc_id     = aws_vpc.azmi1-tf-vpc.id
   cidr_block = "10.0.16.0/20"
   availability_zone = "us-east-1b"
 
   tags = {
-    Name = "azmi1-subnet-public2-us-east-1b"
+    Name = "azmi1-tf-public-subnet-az2"
   }
 }
 
-resource "aws_subnet" "azmi1-subnet-private1-us-east-1a" {
-  vpc_id     = aws_vpc.azmi1-vpc.id
+resource "aws_subnet" "azmi1-tf-private-subnet-az1" {
+  vpc_id     = aws_vpc.azmi1-tf-vpc.id
   cidr_block = "10.0.128.0/20"
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "azmi1-subnet-private1-us-east-1a"
+    Name = "azmi1-tf-private-subnet-az1"
   }
 }
-resource "aws_subnet" "azmi1-subnet-private2-us-east-1b" {
-  vpc_id     = aws_vpc.azmi1-vpc.id
+resource "aws_subnet" "azmi1-tf-private-subnet-az2" {
+  vpc_id     = aws_vpc.azmi1-tf-vpc.id
   cidr_block = "10.0.144.0/20"
   availability_zone = "us-east-1b"
 
   tags = {
-    Name = "azmi1-subnet-private2-us-east-1b"
+    Name = "azmi1-tf-private-subnet-az2"
   }
 }
 
 # Create an internet gateway
 
-resource "aws_internet_gateway" "azmi1-igw" {
-  vpc_id = aws_vpc.azmi1-vpc.id
+resource "aws_internet_gateway" "azmi1-tf-igw" {
+  vpc_id = aws_vpc.azmi1-tf-vpc.id
 
   tags = {
-    Name = "azmi1-igw"
+    Name = "azmi1-tf-igw"
   }
 }
 
@@ -69,12 +69,12 @@ resource "aws_internet_gateway" "azmi1-igw" {
 
 # Create a VPC Endpoint for S3
 
-resource "aws_vpc_endpoint" "azmi1-vpce-s3" {
-  vpc_id       = aws_vpc.azmi1-vpc.id
+resource "aws_vpc_endpoint" "azmi1-tf-vpce-s3" {
+  vpc_id       = aws_vpc.azmi1-tf-vpc.id
   service_name = "com.amazonaws.us-east-1.s3"
 
   tags = {
-    Name = "azmi1-vpce-s3"
+    Name = "azmi1-tf-vpce-s3"
   }
 }
 
