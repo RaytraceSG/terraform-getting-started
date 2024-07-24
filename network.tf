@@ -5,7 +5,7 @@ resource "aws_vpc" "azmi1-tf-vpc" {
   instance_tenancy = "default"
 
   tags = {
-    Name = "azmi1-tf-vpc"
+    Name = var.vpc_name 
   }
 }
 

@@ -25,13 +25,13 @@ variable "key_name" {
 variable "sg_name" {
   description = "Name of EC2 security group"
   type        = string
-  default     = "azmi1-ec2-allow-ssh-http-https" # Change accordingly
+  default     = "azmi1-tf-sg-allow-ssh-http-https" # Change accordingly
 }
 
 variable "vpc_name" {
   description = "Name of VPC to use"
   type        = string
-  default     = "azmi1-vpc" # Change accordingly
+  default     = "azmi1-tf-vpc" # Change accordingly
 }
 
 variable "subnet_name" {
