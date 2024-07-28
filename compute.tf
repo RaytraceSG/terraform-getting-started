@@ -23,7 +23,8 @@ resource "aws_instance" "azmi1-tf-ec2" {
   subnet_id     = aws_subnet.azmi1-tf-public-subnet-az1.id
   associate_public_ip_address = true
   vpc_security_group_ids = [aws_security_group.azmi1-tf-sg-allow-ssh-http-https.id]
-  
+  user_data = "${file("init.sh")}"
+
   depends_on = [aws_internet_gateway.azmi1-tf-igw]
 
   tags = {
