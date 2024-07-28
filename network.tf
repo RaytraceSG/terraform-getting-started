@@ -60,14 +60,7 @@ resource "aws_internet_gateway" "azmi1-tf-igw" {
   }
 }
 
-#Create an internet gateway attachment
 
-#resource "aws_internet_gateway_attachment" "example" {
-#  internet_gateway_id = aws_internet_gateway.azmi1-igw.id
-#  vpc_id              = aws_vpc.azmi1-vpc.id
-#}
-
-# Create a VPC Endpoint for S3
 
 resource "aws_vpc_endpoint" "azmi1-tf-vpce-s3" {
   vpc_id       = aws_vpc.azmi1-tf-vpc.id
@@ -80,7 +73,14 @@ resource "aws_vpc_endpoint" "azmi1-tf-vpce-s3" {
 
 
 
+#Create an internet gateway attachment
 
+#resource "aws_internet_gateway_attachment" "example" {
+#  internet_gateway_id = aws_internet_gateway.azmi1-igw.id
+#  vpc_id              = aws_vpc.azmi1-vpc.id
+#}
+
+# Create a VPC Endpoint for S3
 
 
 # Uses an existing VPC, filtered by vpc_name in variables.tf
