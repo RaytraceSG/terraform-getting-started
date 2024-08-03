@@ -3,6 +3,12 @@
 resource "aws_route_table" "azmi1-tf-public-rtb" {
   vpc_id = aws_vpc.azmi1-tf-vpc.id
 
+  # # Creates routes for within VPC
+  # route {
+  #   cidr_block = aws_vpc.azmi1-tf-vpc.cidr_block
+  #   gateway_id = "local"
+  # }
+
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.azmi1-tf-igw.id
@@ -62,11 +68,11 @@ resource "aws_route_table_association" "d" {
   route_table_id = aws_route_table.azmi1-tf-private-rtb-az2.id
 }
 
-resource "aws_vpc_endpoint_route_table_association" "a" {
-  route_table_id  = aws_route_table.azmi1-tf-private-rtb-az1.id
-  vpc_endpoint_id = aws_vpc_endpoint.azmi1-tf-vpce-s3.id
-}
-resource "aws_vpc_endpoint_route_table_association" "b" {
-  route_table_id  = aws_route_table.azmi1-tf-private-rtb-az2.id
-  vpc_endpoint_id = aws_vpc_endpoint.azmi1-tf-vpce-s3.id
-}
+# resource "aws_vpc_endpoint_route_table_association" "a" {
+#   route_table_id  = aws_route_table.azmi1-tf-private-rtb-az1.id
+#   vpc_endpoint_id = aws_vpc_endpoint.azmi1-tf-vpce-s3.id
+# }
+# resource "aws_vpc_endpoint_route_table_association" "b" {
+#   route_table_id  = aws_route_table.azmi1-tf-private-rtb-az2.id
+#   vpc_endpoint_id = aws_vpc_endpoint.azmi1-tf-vpce-s3.id
+# }

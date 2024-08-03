@@ -17,7 +17,7 @@
 # e.g. terraform apply --var ec2_name="my-webserver"
 
 resource "aws_instance" "azmi1-tf-ec2" {
-  ami           = var.ami_id
+  ami           = data.aws_ami.aws_ami_data.id
   instance_type = var.instance_type
   key_name      = aws_key_pair.azmi1-tf-keypair.key_name
   subnet_id     = aws_subnet.azmi1-tf-public-subnet-az1.id
@@ -30,4 +30,34 @@ resource "aws_instance" "azmi1-tf-ec2" {
   tags = {
     Name = "azmi1-tf-ec2"
   }
+}
+
+data "aws_ami" "aws_ami_data" {
+  most_recent = true
+  owners = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["al2023-ami-2023*"]
+  }
+
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
+}
+
+output "aws_ami_output" {
+  value =  data.aws_ami.aws_ami_data.id
 }

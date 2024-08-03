@@ -61,10 +61,10 @@ resource "aws_internet_gateway" "azmi1-tf-igw" {
 }
 
 
-
 resource "aws_vpc_endpoint" "azmi1-tf-vpce-s3" {
   vpc_id       = aws_vpc.azmi1-tf-vpc.id
   service_name = "com.amazonaws.us-east-1.s3"
+  route_table_ids = [aws_route_table.azmi1-tf-private-rtb-az1.id, aws_route_table.azmi1-tf-private-rtb-az2.id]
 
   tags = {
     Name = "azmi1-tf-vpce-s3"

@@ -1,7 +1,7 @@
 variable "ami_id" {
   description = "AMI ID"
   type        = string
-  default     = "ami-0b72821e2f351e396"
+  default     = "ami-0ba9883b710b05ac6"
 }
 
 variable "ec2_name" {
